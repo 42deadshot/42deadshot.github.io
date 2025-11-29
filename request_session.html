@@ -1,0 +1,14 @@
+{% extends 'studio/base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="contact-form">
+    <h2>Contact / Book a Session</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+{% endblock %}

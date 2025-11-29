@@ -1,0 +1,365 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fretistan Ltd — Bridging you to your future</title>
+    <link rel="icon" href="{% static 'studio/icons/favicon.png' %}" type="image/logo.png" />
+    <link rel="stylesheet" href="{% static 'studio/css/custom.css' %}" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f97316;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        header .logo img {
+            height: 50px;
+            vertical-align: middle;
+        }
+
+        header .logo strong {
+            font-size: 1.25rem;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* --- PROFESSIONAL HAMBURGER STYLING --- */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1100;
+        }
+
+        .menu-toggle div {
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.4s ease;
+        }
+
+        /* Hamburger active animation: turns into X */
+        .menu-toggle.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.open div:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 768px) {
+            header nav {
+                display: none !important;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #f97316;
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+
+            header nav.active {
+                display: flex !important;
+            }
+
+            header nav a {
+                padding: 0.75rem 0;
+                font-size: 1.1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            header nav a:first-child {
+                border-top: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* Hero Section with animated gradient */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: white;
+
+            background: linear-gradient(270deg, #f97316, #ffb74d, #f97316);
+            background-size: 600% 600%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero h1, .hero p {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .hero h1.visible, .hero p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 40vh;
+                padding: 1.5rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.05rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 35vh;
+                padding: 1rem 1rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+        }
+
+        main {
+            padding: 1rem 2rem;
+            min-height: 60vh;
+        }
+
+        main > *:first-child {
+            margin-top: -1rem;
+        }
+
+        .btn {
+            background-color: white;
+            color: #f97316;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ffe0b2;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .social-icons {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        footer .social-icons a img {
+            width: 28px;
+            height: 28px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        footer .social-icons a:hover img,
+        footer .social-icons a:active img {
+            transform: scale(1.15);
+        }
+
+        @media (max-width: 480px) {
+            footer .social-icons {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        .contact-info {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-divider {
+            border-top: 1px solid #374151;
+            margin: 1.5rem auto;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <img src="{% static 'studio/images/logo.png' %}" alt="Fretistan Logo">
+        <strong>Fretistan Ltd</strong>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <nav id="nav-menu">
+        <a href="{% url 'fretistan:home' %}">Home</a>
+        <a href="{% url 'fretistan:projects' %}">Projects</a>
+        <a href="{% url 'fretistan:categories' %}">Categories</a>
+        <a href="{% url 'fretistan:about' %}">About</a>
+        <a href="{% url 'fretistan:contact' %}">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Building Dreams, Constructing Futures</h1>
+    <p>From concept to completion — Fretistan Ltd delivers quality, precision, and trust in every project.</p>
+</section>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <div style="text-align:center; margin-bottom:1rem;">
+        <img src="{% static 'studio/images/logo.png' %}" alt="Fretistan Logo" style="height: 45px;">
+        <p><strong>Fretistan Ltd</strong> — Building a future that lasts.</p>
+    </div>
+
+    <div style="margin: 1rem auto; font-size: 0.95rem; line-height: 1.6; max-width: 800px; text-align:center;">
+        <em>
+            At Fretistan Ltd, we combine engineering precision with visionary design to create structures that stand the test of time. From residential homes to expansive roads, bridges, boreholes, structure management and every other type of construction, we pride ourselves on delivering projects with integrity, innovation, and sustainable excellence. Every project is a promise of quality, durability, and a legacy of generations to come.
+        </em>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/fretistan" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'studio/icons/facebook.png' %}" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/fretistan_co.ltd" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'studio/icons/instagram.png' %}" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/yourchannel" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'studio/icons/youtube.png' %}" alt="YouTube">
+        </a>
+        <a href="https://twitter.com/fretistan_coltd" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'studio/icons/x.png' %}" alt="X (Twitter)">
+        </a>
+        <a href="https://wa.me/254726273985" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'studio/icons/whatsapp.png' %}" alt="WhatsApp">
+        </a>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="contact-info">
+        <p><strong>Call Us:</strong> +254726273985 | +254705796468</p>
+        <p><strong>Email:</strong> <a href="mailto:fretistancompanyltd@gmail.com" style="color:#f97316;">fretistancompanyltd@gmail.com</a></p>
+        <p>© 2025 Fretistan Ltd. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        toggle.classList.toggle('open');
+    });
+
+    const socialIcons = document.querySelectorAll('.social-icons a img');
+    socialIcons.forEach(icon => {
+        icon.addEventListener('touchstart', () => { icon.style.transform = 'scale(1.15)'; });
+        icon.addEventListener('touchend', () => { icon.style.transform = 'scale(1)'; });
+    });
+
+    const heroTitle = document.querySelector('.hero h1');
+    const heroText = document.querySelector('.hero p');
+    setTimeout(() => { heroTitle.classList.add('visible'); }, 100);
+    setTimeout(() => { heroText.classList.add('visible'); }, 400);
+});
+</script>
+</body>
+</html>

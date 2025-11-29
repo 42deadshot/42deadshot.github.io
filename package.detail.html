@@ -1,0 +1,41 @@
+{% extends "studio/base.html" %}
+{% block title %}{{ package.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ package.name }}</h1>
+    <p><strong>Project Type:</strong> {{ package.project_type }}</p>
+    <p>{{ package.description }}</p>
+
+    <hr>
+
+    <h3>Projects in this Package</h3>
+    {% if projects %}
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                        {% else %}
+                            <img src="{% static 'studio/images/logo.png' %}" class="card-img-top" alt="No Image">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description|truncatechars:100 }}</p>
+                            <a href="{% url 'fretistan:project_detail' project.id %}" class="btn btn-primary">View Project</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Category: {{ project.category.name if project.category else "N/A" }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="alert alert-warning">No projects available in this package at the moment.</p>
+    {% endif %}
+
+    <a href="{% url 'fretistan:package_list' %}" class="btn btn-secondary mt-3">Back to Packages</a>
+</div>
+{% endblock %}

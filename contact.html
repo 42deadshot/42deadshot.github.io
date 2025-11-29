@@ -1,0 +1,48 @@
+{% extends "studio/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us | Fretistan Ltd{% endblock %}
+
+{% block content %}
+<section class="contact-section py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold text-dark mb-4">Contact Us</h2>
+    <p class="text-muted mb-5">
+      Have a question or want to start a project with us? Reach out anytime — we’d love to hear from you.
+    </p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-semibold">📍 Office Address</h5>
+        <p>Fretistan Ltd<br>We are located at Meru Makutano Kikis building near Kanini Haraka Stores</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-semibold">📞 Phone</h5>
+        <p>+254726273985 or +254 712 345 678</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-semibold">📧 Email</h5>
+        <p>fretistancompanyltd@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h4>Send us a Message</h4>
+      <form class="mt-3 mx-auto" style="max-width: 500px;">
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Your Email" required>
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-warning text-white">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,14 +1,129 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fretistan</title>
-</head>
-<body style="font-family:system-ui,Arial;max-width:800px;margin:40px auto;">
-  <h1>Welcome to Fretistan</h1>
-  <p>This is your site. Edit this text on GitHub to change what visitors see.</p>
-  <p>To edit: open the <strong>index.html</strong> file in this repository and change the text, then click <em>Commit changes</em>.</p>
-  <footer style="margin-top:40px;color:#555;font-size:14px;">Made with GitHub Pages</footer>
-</body>
-</html>
+{% extends 'studio/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= DEBUG: show detected slideshow images ================= -->
+<!-- Uncomment if you want to debug slideshow images -->
+<!--
+<div class="bg-red-100 text-red-800 p-4 mb-4">
+    <h2 class="font-bold mb-2">DEBUG: Slideshow Images Detected</h2>
+    <ul>
+        {% if slideshow_images %}
+            {% for img in slideshow_images %}
+                <li>{{ img }}</li>
+            {% endfor %}
+        {% else %}
+            <li><strong>No images detected!</strong></li>
+        {% endif %}
+    </ul>
+</div>
+-->
+<!-- ======================================================================== -->
+
+<!-- Top Hero Text -->
+<section class="text-center py-16 bg-orange-600 text-white px-4">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+        Building Dreams, Constructing Futures
+    </h1>
+    <p class="text-lg sm:text-xl md:text-2xl drop-shadow-lg">
+        Quality construction that stands the test of time.
+    </p>
+</section>
+
+<!-- Slideshow Section -->
+<section class="hero relative w-full overflow-hidden h-96 sm:h-[450px] md:h-[550px]">
+    {% for image in slideshow_images %}
+        <img class="slide-image absolute inset-0 w-full h-full object-cover {% if forloop.first %}active{% endif %}"
+             src="{% static image %}"
+             onclick="openLightbox(this.src)">
+    {% endfor %}
+
+    <!-- Overlay for readability -->
+    <div class="absolute inset-0 bg-black/30 z-10"></div>
+
+    <!-- Optional arrows -->
+    <span class="prev cursor-pointer absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/30 rounded px-2 py-1 hover:bg-black/60 z-20" onclick="changeSlide(-1)">&#10094;</span>
+    <span class="next cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/30 rounded px-2 py-1 hover:bg-black/60 z-20" onclick="changeSlide(1)">&#10095;</span>
+</section>
+
+<!-- Bottom Hero Text -->
+<section class="text-center py-16 bg-gray-100 text-gray-800 px-4">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+        Delivering Promises, Building Legacies
+    </h2>
+    <p class="text-lg sm:text-xl md:text-2xl">
+        Every project is completed with precision, integrity, and quality you can trust.
+    </p>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="hidden fixed inset-0 bg-black/70 z-50 items-center justify-center">
+    <img id="lb-img" src="" alt="Lightbox image" class="max-h-[90vh] max-w-[95vw] object-contain rounded"/>
+</div>
+
+<script>
+window.onload = function() {
+    // Hero slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-image');
+
+    if (slides.length === 0) return; // Prevent errors if no images
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    }
+
+    function changeSlide(n) {
+        currentSlide = (currentSlide + n + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Show first image
+    showSlide(currentSlide);
+
+    // Auto-rotate images every 4 seconds, pause on hover for mobile usability
+    let slideInterval = setInterval(nextSlide, 4000);
+    slides.forEach(slide => {
+        slide.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        slide.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 4000));
+    });
+
+    // Preload images
+    slides.forEach(img => { const pre = new Image(); pre.src = img.src; });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+
+    document.querySelectorAll('img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', () => {
+            lbImg.src = img.src;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+        });
+    });
+
+    lightbox.addEventListener('click', () => {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+    });
+}
+</script>
+
+<style>
+    .hero { min-height: 50vh; position: relative; }
+    .slide-image { position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:none; }
+    .slide-image.active { display:block; }
+    .drop-shadow-lg { text-shadow: 2px 2px 6px rgba(0,0,0,0.7); }
+    .btn { background-color: white; color: #f97316; border:none; padding:0.8rem 1.8rem; border-radius:9999px; font-weight:bold; cursor:pointer; text-decoration:none; transition: all 0.3s ease; }
+    .btn:hover { background-color:#ffe0b2; transform: translateY(-2px); }
+</style>
+
+{% endblock %}

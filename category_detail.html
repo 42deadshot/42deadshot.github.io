@@ -1,0 +1,70 @@
+
+{% extends "studio/base.html" %}
+{% load static %}
+{% block title %}{{ category.name }} — Fretistan Ltd{% endblock %}
+
+{% block content %}
+
+<!-- HEADER -->
+<section class="text-center py-12 bg-gray-50 rounded-xl shadow mb-8">
+  <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ category.name }}</h1>
+  {% if category.description %}
+    <p class="text-gray-600 max-w-2xl mx-auto">{{ category.description }}</p>
+  {% endif %}
+</section>
+
+<!-- CATEGORY IMAGE GRID -->
+<section class="px-6 md:px-10">
+  {% if category.images.all %}
+    {% comment %}Determine how many placeholders we need for the first row{% endcomment %}
+    {% with images=category.images.all %}
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 justify-items-center">
+        {% for img in images %}
+          <div class="w-20 h-20 overflow-hidden rounded-lg bg-gray-100 shadow hover:shadow-md transition transform hover:-translate-y-1">
+            <img src="{{ img.image.url }}"
+                 alt="{{ category.name }}"
+                 class="w-full h-full object-cover cursor-pointer transition-transform duration-200 hover:scale-110"
+                 onclick="openLightbox('{{ img.image.url }}')">
+          </div>
+        {% endfor %}
+        {% for i in images|length|add:-1|divisibleby:4|yesno:"0,1" %}
+          <div class="w-20 h-20 bg-transparent invisible"></div>
+        {% endfor %}
+      </div>
+    {% endwith %}
+  {% else %}
+    <div class="text-center py-12 bg-gray-50 border rounded shadow">
+      <img src="{% static 'studio/images/construction-placeholder.jpg' %}" alt="No Images" class="mx-auto w-48 h-48 object-contain mb-4">
+      <p class="text-gray-500 font-semibold">No images have been added to this category yet.</p>
+    </div>
+  {% endif %}
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="hidden fixed inset-0 bg-black/80 z-50 items-center justify-center">
+  <img id="lb-img" src="" alt="Lightbox Image" class="max-h-[90vh] max-w-[95vw] object-contain rounded shadow-lg">
+</div>
+
+<script>
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lb-img');
+  img.src = src;
+  lb.classList.remove('hidden');
+  lb.classList.add('flex');
+}
+
+document.getElementById('lightbox').addEventListener('click', function() {
+  this.classList.add('hidden');
+  this.classList.remove('flex');
+});
+</script>
+
+<!-- BACK BUTTON -->
+<div class="text-center mt-10">
+  <a href="{% url 'fretistan:categories' %}" class="inline-block bg-gray-300 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-400 transition">
+    ← Back to Categories
+  </a>
+</div>
+
+{% endblock %}

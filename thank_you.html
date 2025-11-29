@@ -1,0 +1,11 @@
+{% extends 'studio/base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="thank-you">
+    <h2>Thank You!</h2>
+    <p>Your request has been submitted successfully. We will contact you soon.</p>
+    <a href="{% url 'fretistan:home' %}">Back to Home</a>
+</section>
+
+{% endblock %}

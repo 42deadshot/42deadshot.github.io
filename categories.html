@@ -1,0 +1,203 @@
+{% extends 'studio/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section style="padding: 4rem 0; background-color: #f9fafb;">
+    <div id="categories-container" style="max-width: 1100px; margin: 0 auto; padding: 0 1rem;">
+        <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: #111827; letter-spacing: 0.5px;">
+            Our Categories
+        </h2>
+
+        {% for category in categories %}
+            <div class="category-card bg-white rounded-2xl shadow-md overflow-hidden mb-10"
+                 style="transition: all 0.3s ease; border: 1px solid #e5e7eb; padding: 1.5rem;">
+
+                <!-- Category Title -->
+                <div style="padding: 0.5rem 0; text-align: center;">
+                    <h3 style="font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem; word-wrap: break-word; white-space: normal; overflow-wrap: break-word; letter-spacing: 0.5px;">
+                        {{ category.name }}
+                    </h3>
+                </div>
+
+                <!-- Image + Placeholder Grid -->
+                <div class="category-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; justify-items: center; padding: 0.5rem;">
+                    {% for image in category.images.all %}
+                        <div class="image-thumb" data-category-index="{{ forloop.parentloop.counter0 }}" data-image-index="{{ forloop.counter0 }}"
+                             style="width: 120px; height: 120px; overflow: hidden; border-radius: 12px; cursor: pointer; background-color: #f3f4f6; border: 1px solid #d1d5db; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                            <img src="{{ image.image.url }}" alt="{{ image.name }}"
+                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;"
+                                 onclick="openLightbox(this, {{ forloop.parentloop.counter0 }})"
+                                 onmouseover="this.style.transform='scale(1.05)'; this.parentElement.style.boxShadow='0 6px 18px rgba(0,0,0,0.15)'"
+                                 onmouseout="this.style.transform='scale(1)'; this.parentElement.style.boxShadow='0 2px 8px rgba(0,0,0,0.05)'">
+                        </div>
+                    {% endfor %}
+                    <div class="placeholder-container" style="display: contents;"></div>
+                </div>
+
+                {% if not category.images.all %}
+                    <div style="padding: 0.5rem; text-align: center;">
+                        <p style="color: #6b7280; font-size: 0.9rem; font-style: italic;">
+                            No images available for this category yet.
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Go Back Home Section -->
+<section style="text-align: center; padding: 3rem 1rem; background-color: #c2410c; color: white;">
+    <a href="{% url 'fretistan:home' %}"
+       style="display: inline-block; background-color: white; color: #c2410c; font-weight: 700; padding: 0.8rem 1.5rem; border-radius: 0.5rem; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease;"
+       onmouseover="this.style.backgroundColor='#f3f4f6'; this.style.color='#c2410c';"
+       onmouseout="this.style.backgroundColor='white'; this.style.color='#c2410c';">
+        ⬆ Back to Home
+    </a>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox"
+     style="position: fixed; inset: 0; background-color: rgba(0,0,0,0.85); z-index: 50; display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px); overflow: hidden;">
+
+    <!-- Previous Button -->
+    <button id="prev-btn" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; padding: 10px 15px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 1.2rem;">❮</button>
+
+    <!-- Image Wrapper -->
+    <div id="lb-wrapper" style="overflow: hidden; width: 90vw; max-width: 90vw; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+
+        <!-- Image Counter -->
+        <div id="lb-counter" style="color: #ffffff; margin-bottom: 10px; font-size: 0.9rem; font-weight: 500;"></div>
+
+        <!-- Image -->
+        <img id="lb-img" src="" alt="Lightbox image"
+             style="max-height: 90vh; max-width: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); transition: transform 0.4s ease, opacity 0.4s ease;"/>
+    </div>
+
+    <!-- Next Button -->
+    <button id="next-btn" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.7); border: none; padding: 10px 15px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 1.2rem;">❯</button>
+</div>
+
+<script>
+let currentCategory = 0;
+let currentImage = 0;
+let categories = [];
+
+function updateCounter() {
+    const counter = document.getElementById('lb-counter');
+    counter.textContent = `Image ${currentImage + 1} of ${categories[currentCategory].length}`;
+}
+
+function openLightbox(imgElement, categoryIndex) {
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    currentCategory = categoryIndex;
+    const categoryCard = document.querySelectorAll('.category-card')[categoryIndex];
+    const imgs = categoryCard.querySelectorAll('.image-thumb img');
+
+    categories[categoryIndex] = Array.from(imgs).map(img => img.src);
+    currentImage = Array.from(imgs).indexOf(imgElement);
+
+    lbImg.src = categories[currentCategory][currentImage];
+    lbImg.style.transform = 'translateX(0)';
+    lbImg.style.opacity = '1';
+    lightbox.style.display = 'flex';
+    updateCounter();
+}
+
+function showImage(direction) {
+    const lbImg = document.getElementById('lb-img');
+    const width = lbImg.clientWidth;
+
+    // Slide out
+    lbImg.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+    lbImg.style.transform = `translateX(${direction * -100}%)`;
+    lbImg.style.opacity = '0';
+
+    setTimeout(() => {
+        lbImg.src = categories[currentCategory][currentImage];
+        lbImg.style.transition = 'none';
+        lbImg.style.transform = `translateX(${direction * 100}%)`;
+        lbImg.style.opacity = '0';
+        requestAnimationFrame(() => {
+            lbImg.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+            lbImg.style.transform = 'translateX(0)';
+            lbImg.style.opacity = '1';
+        });
+        updateCounter();
+    }, 300);
+}
+
+// Buttons
+document.getElementById('next-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const direction = 1;
+    currentImage = (currentImage + 1) % categories[currentCategory].length;
+    showImage(direction);
+});
+document.getElementById('prev-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const direction = -1;
+    currentImage = (currentImage - 1 + categories[currentCategory].length) % categories[currentCategory].length;
+    showImage(direction);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox.style.display === 'flex') {
+        if (e.key === 'ArrowRight') {
+            const direction = 1;
+            currentImage = (currentImage + 1) % categories[currentCategory].length;
+            showImage(direction);
+        } else if (e.key === 'ArrowLeft') {
+            const direction = -1;
+            currentImage = (currentImage - 1 + categories[currentCategory].length) % categories[currentCategory].length;
+            showImage(direction);
+        } else if (e.key === 'Escape') {
+            lightbox.style.display = 'none';
+        }
+    }
+});
+
+// Click to close
+document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.style.display = 'none';
+    });
+
+    // Dynamic placeholders
+    function updatePlaceholders() {
+        document.querySelectorAll('.category-card').forEach(card => {
+            const grid = card.querySelector('.category-grid');
+            const placeholderContainer = grid.querySelector('.placeholder-container');
+            placeholderContainer.innerHTML = '';
+
+            const images = grid.querySelectorAll('.image-thumb').length;
+            const gridWidth = grid.clientWidth;
+            const minBoxWidth = 120 + 12;
+            const totalCols = Math.floor(gridWidth / minBoxWidth);
+            const placeholdersToAdd = Math.max(0, totalCols - images);
+
+            for (let i = 0; i < placeholdersToAdd; i++) {
+                const placeholder = document.createElement('div');
+                placeholder.style.width = '120px';
+                placeholder.style.height = '120px';
+                placeholder.style.backgroundColor = '#f3f4f6';
+                placeholder.style.border = '1px dashed #d1d5db';
+                placeholder.style.borderRadius = '12px';
+                placeholder.style.boxShadow = '0 2px 6px rgba(0,0,0,0.05)';
+                placeholder.style.transition = 'all 0.3s ease';
+                placeholderContainer.appendChild(placeholder);
+            }
+        });
+    }
+
+    updatePlaceholders();
+    window.addEventListener('resize', updatePlaceholders);
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "studio/base.html" %}
+{% load static %}
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-4">{{ project.title }}</h1>
+
+  <div class="mb-4 text-gray-700">
+    <p><strong>Category:</strong> {{ project.category.name if project.category else "N/A" }}</p>
+    <p><strong>Package:</strong> {{ project.package.name if project.package else "N/A" }}</p>
+  </div>
+
+  {% if project.image %}
+    <img src="{{ project.image.url }}" class="w-full rounded-lg shadow mb-6" alt="{{ project.title }}">
+  {% else %}
+    <img src="{% static 'studio/images/logo.png' %}" class="w-full rounded-lg shadow mb-6" alt="No Image">
+  {% endif %}
+
+  <p class="text-gray-800 leading-relaxed mb-8">{{ project.description }}</p>
+
+  {% if project.photos.exists %}
+    <h3 class="text-2xl font-semibold mb-4">Photos</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+      {% for photo in project.photos.all %}
+        <img src="{{ photo.image.url }}" alt="{{ photo.description }}" class="rounded-lg shadow hover:scale-105 transition">
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if project.videos.exists %}
+    <h3 class="text-2xl font-semibold mb-4">Videos</h3>
+    {% for video in project.videos.all %}
+      <div class="mb-6">
+        <video width="100%" controls class="rounded-lg shadow">
+          <source src="{{ video.file.url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <a href="{% url 'fretistan:project_list' %}" class="inline-block mt-4 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+    ← Back to Projects
+  </a>
+</div>
+{% endblock %}
