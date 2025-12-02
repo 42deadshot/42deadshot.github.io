@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+/* Make ALL images responsive */
+img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 html {
     scroll-behavior: smooth;
 }
