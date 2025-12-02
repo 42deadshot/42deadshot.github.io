@@ -96,7 +96,7 @@ p {
     display: flex;
     gap: 2rem;
     align-items: center;
-    transition: max-height 0.4s ease;
+    transition: max-height 0.4s ease, padding 0.4s ease;
     overflow: hidden;
 }
 
@@ -116,24 +116,76 @@ p {
     transition: all 0.3s ease;
 }
 
-/* Hamburger open state */
+/* Hamburger open state - pushes content down with orange background */
 .nav-menu.open {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    background-color: var(--primary-orange);
+    padding: 1rem 0;
+}
+
+.nav-menu.open a {
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+}
+
+/* Hamburger animation for cross */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* ---------------------- HERO SECTION ---------------------- */
-.hero {
-    margin-top: 80px;
-    height: 80vh;
-    position: relative;
-    overflow: hidden;
-    background-color: var(--primary-orange);
+.hero-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 50vh;
+    padding: 30px 20px;
+    margin-top: 80px; /* space for navbar */
+    background-color: #000; /* black background */
+    text-align: center;
+    box-sizing: border-box;
 }
 
-.slideshow-container {
-    height: 100%;
+.hero-text {
+    font-weight: 900;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    line-height: 1.4;
+    display: block;
+    margin: 15px 0;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.hero-text span {
+    display: inline;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: drop 0.5s forwards;
+}
+
+@keyframes drop {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero slideshow */
+.hero {
     position: relative;
+    height: 50vh;
+    overflow: hidden;
 }
 
 .slide {
@@ -145,36 +197,11 @@ p {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: opacity 0.8s ease-in-out;
 }
 
 .slide.active {
     opacity: 1;
-}
-
-.slide-overlay {
-    text-align: center;
-    color: var(--text-light);
-    background: rgba(242, 133, 0, 0.7);
-    padding: 3rem;
-    border-radius: 10px;
-    max-width: 800px;
-    margin: 0 20px;
-}
-
-.slide-overlay h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 800;
-}
-
-.slide-overlay p {
-    font-size: 1.25rem;
-    margin-bottom: 0;
-    color: var(--text-light);
 }
 
 /* ---------------------- SLIDESHOW NAVIGATION ---------------------- */
@@ -275,7 +302,7 @@ p {
 }
 
 /* ---------------------- CARDS ---------------------- */
-.project-card, .service-card, .team-member, .category-card {
+.project-card, .service-card {
     background-color: var(--bg-white);
     border-radius: 10px;
     overflow: hidden;
@@ -283,34 +310,9 @@ p {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card:hover, .service-card:hover, .team-member:hover, .category-card:hover {
+.project-card:hover, .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-/* ---------------------- SOCIAL LINKS ---------------------- */
-.social-links {
-    display: flex;
-    gap: 10px;
-}
-
-.social-link {
-    width: 40px;
-    height: 40px;
-    background-color: var(--secondary-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    color: var(--text-light);
-    font-size: 1.25rem;
-}
-
-.social-link:hover {
-    background-color: var(--primary-orange);
-    color: var(--text-light);
-    transform: scale(1.2);
 }
 
 /* ---------------------- FOOTER ---------------------- */
@@ -331,7 +333,6 @@ p {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 1rem;
 }
 
 .footer-logo img {
@@ -341,7 +342,6 @@ p {
 
 .footer-logo h3 {
     color: var(--text-light);
-    margin-bottom: 0;
 }
 
 .footer-contact h4, .footer-social h4 {
@@ -371,10 +371,9 @@ p {
 
 .footer-bottom p {
     color: var(--text-light);
-    margin-bottom: 0;
 }
 
-/* ---------------------- RESPONSIVE DESIGN ---------------------- */
+/* ---------------------- RESPONSIVE ---------------------- */
 @media (max-width: 1024px) {
     .hamburger {
         display: flex;
@@ -384,12 +383,14 @@ p {
         max-height: 0;
         overflow: hidden;
         flex-direction: column;
-        transition: max-height 0.4s ease;
+        transition: max-height 0.4s ease, padding 0.4s ease;
         width: 100%;
     }
 
     .nav-menu.open {
-        max-height: 500px; /* enough to show all links */
+        max-height: 500px;
+        padding: 1rem 0;
+        background-color: var(--primary-orange);
     }
 }
 
@@ -403,18 +404,6 @@ p {
         flex-direction: column;
         text-align: center;
     }
-}
-
-/* ---------------------- UTILITY & ANIMATION ---------------------- */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* ---------------------- IMAGE RESPONSIVENESS ---------------------- */

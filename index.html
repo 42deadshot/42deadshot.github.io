@@ -71,7 +71,47 @@
         opacity: 1;
     }
 
-    /* Hamburger animation */
+    /* Hamburger menu responsive */
+    .nav-menu {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        overflow: hidden;
+    }
+
+    .nav-menu.open {
+        flex-direction: column;
+        max-height: 500px; /* enough to show all links */
+        padding: 1rem 0;
+        background-color: #F28500; /* orange background */
+    }
+
+    .nav-menu.open a {
+        color: #fff; /* white text on orange */
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-menu a {
+        text-decoration: none;
+        color: var(--text-light); /* default desktop color */
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-light);
+        transition: all 0.3s ease;
+    }
+
+    /* Hamburger animation for cross */
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -84,6 +124,13 @@
 
     /* Responsive adjustments */
     @media (max-width: 1024px) {
+        .nav-menu {
+            max-height: 0;
+            flex-direction: column;
+        }
+        .hamburger {
+            display: flex;
+        }
         .hero-text {
             font-size: clamp(1rem, 5vw, 1.8rem);
         }
@@ -341,8 +388,8 @@
     const navMenu = document.getElementById('navMenu');
 
     hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('open'); // fixed class name
-        hamburger.classList.toggle('active'); // hamburger bars animate
+        navMenu.classList.toggle('open');
+        hamburger.classList.toggle('active');
     });
 </script>
 </body>
