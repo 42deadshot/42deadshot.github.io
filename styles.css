@@ -14,6 +14,19 @@ img {
     object-fit: cover;
 }
 
+/* Additional responsive rule for images inside cards/containers */
+.project-card img,
+.service-card img,
+.team-member img,
+.category-card img,
+.about-section img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -413,6 +426,31 @@ social-link:hover {
     .nav-menu { flex-direction: column; }
     .cta-buttons { flex-direction: column; align-items: center; }
     .footer-content { flex-direction: column; text-align: center; }
+}
+
+/* Hero Section Responsive Fix for Small Screens */
+@media (max-width: 768px) {
+    .hero {
+        height: 50vh; /* reduce height on small screens */
+    }
+
+    .slide-overlay {
+        padding: 1.5rem; /* smaller padding */
+        max-width: 90%; /* fit within mobile screen */
+    }
+
+    .slide-overlay h1 {
+        font-size: 1.8rem; /* smaller heading */
+    }
+
+    .slide-overlay p {
+        font-size: 1rem; /* smaller paragraph */
+    }
+
+    .slide {
+        background-size: contain; /* show whole image */
+        background-position: center top;
+    }
 }
 
 /* Hover and Animation Utility */
