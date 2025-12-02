@@ -71,6 +71,17 @@
         opacity: 1;
     }
 
+    /* Hamburger animation */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 1024px) {
         .hero-text {
@@ -330,8 +341,8 @@
     const navMenu = document.getElementById('navMenu');
 
     hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('open'); // fixed class name
+        hamburger.classList.toggle('active'); // hamburger bars animate
     });
 </script>
 </body>
