@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - Fretistan Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Fallback image styling for missing images */
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .project-image img:empty {
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #555;
+            min-height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
+                <span>Fretistan Ltd</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="categories.html" class="nav-link">Categories</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Projects</h1>
+            <p>The Expert Solution To All Your Construction Needs.</p>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects">
+        <div class="container">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="resources/Boda 1.jpg" alt="Boda 1" onerror="this.onerror=null;this.src='resources/Boda 1.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <h3>Boda Boda Sheds</h3>
+                        <p class="project-location">Meru, Kenya</p>
+                        <p class="project-description">A Boda Boda Shed built by Fretistan ltd funded by the county government to enable local riders rest and shield them from downpours and the draining sun.</p>
+                        <div class="project-details">
+                            <span class="project-type">Transport</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="resources/Bridge 1.jpg" alt="Bridge 1" onerror="this.onerror=null;this.src='resources/Bridge 1.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <h3>Community Bridge</h3>
+                        <p class="project-location"></p>
+                        <p class="project-description">Essential infrastructure connecting rural communities across a seasonal river. This bridge improved access to markets, schools, and healthcare facilities for over thousands residents.</p>
+                        <div class="project-details">
+                            <span class="project-type">Infrastructure</span>
+                            <span class="project-year"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="resources/Commercial building.jpg" alt="Commercial building" onerror="this.onerror=null;this.src='resources/Commercial building.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <h3>Commercial Complex</h3>
+                        <p class="project-location"></p>
+                        <p class="project-description">Multipurpose commercial building with retail spaces, offices, and parking facilities. The multiple-story complex features modern architecture and sustainable design elements.</p>
+                        <div class="project-details">
+                            <span class="project-type">Commercial</span>
+                            <span class="project-year"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="resources/Road 3.jpg" alt="Road 3" onerror="this.onerror=null;this.src='resources/Road 3.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <h3>Rural Road Construction</h3>
+                        <p class="project-location"></p>
+                        <p class="project-description">All-weather road connecting remote villages to main highways. The project included drainage systems, culverts, and road surfacing to ensure year-round accessibility.</p>
+                        <div class="project-details">
+                            <span class="project-type">Infrastructure</span>
+                            <span class="project-year"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="resources/Water drilling" alt="Water drilling" onerror="this.onerror=null;this.src='resources/Water drilling.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <h3>Water Borehole Project</h3>
+                        <p class="project-location"></p>
+                        <p class="project-description">Deep water borehole providing sustainable water supply to drought-affected communities. The project included drilling, pump installation, and water treatment systems serving over hundreds of households.</p>
+                        <div class="project-details">
+                            <span class="project-type">Water Infrastructure</span>
+                            <span class="project-year"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="resources/Pavement 3.jpg" alt="Pavement 3" onerror="this.onerror=null;this.src='resources/Pavement 3.jpg';">
+                    </div>
+                    <div class="project-content">
+                        <h3>Infrastructure Development</h3>
+                        <p class="project-location"></p>
+                        <p class="project-description">Comprehensive infrastructure upgrade in the form of concrete works, drainage, and road networks. This project transformed the local infrastructure supporting commercial development easing movement and reducing traffic jam.</p>
+                        <div class="project-details">
+                            <span class="project-type">Infrastructure</span>
+                            <span class="project-year"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Stats -->
+    <section class="project-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>30+</h3>
+                    <p>Communities Served</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Have a question?</h2>
+                <p>or want to start a project with us? Reach out anytime — we’d love to hear from you.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn-primary">Contact Us</a>
+                    <a href="categories.html" class="btn-secondary">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
+                    <h3>Fretistan Ltd</h3>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>📍 We are located in Meru, Makutano Kikis building near Kanini haraka Stores</p>
+                    <p>📞 +254 726 273 985 | +254 705 796 468</p>
+                    <p>✉️ fretistanColtd@gmail.com</p>
+                </div>
+                <div  class="social-links" style="display:flex; gap:10px; align-items:center;">
+                        <a href="https://instagram.com/@fretistan_co.ltd"><img src="resources/instagram.png" alt="Instagram" width="30"></a>
+                        <a href="https://x.com/@fretistan_coltd"><img src="resources/x.png" alt="X" width="30"></a>
+                        <a href="https://wa.me/254726273985"><img src="resources/whatsapp.png" alt="WhatsApp" width="30"></a>
+                        <a href="https://facebook.com/fretistan"><img src="resources/facebook.png" alt="Facebook" width="30"></a>
+                        <a href="#"><img src="resources/youtube.png" alt="Youtube" width="30"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fretistan Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

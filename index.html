@@ -1,14 +1,329 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fretistan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fretistan Ltd — Bridging you to your future</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+    /* Hero message container - dynamically centered */
+    .hero-message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 50vh;
+        padding: 30px 20px;
+        margin-top: 80px; /* space for navbar */
+        background-color: #000; /* black background */
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* Hero text lines */
+    .hero-text {
+        font-weight: 900;
+        color: #fff; /* white text */
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(1.2rem, 5vw, 2rem); /* responsive font */
+        line-height: 1.4;
+        display: block;
+        margin: 15px 0;
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+
+    .hero-text span {
+        display: inline; /* fixes spacing issue */
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: drop 0.5s forwards;
+    }
+
+    @keyframes drop {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Hero slideshow */
+    .hero {
+        position: relative;
+        height: 50vh;
+        overflow: hidden;
+        margin-top: 0;
+    }
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+    }
+
+    .slide.active {
+        opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .hero-text {
+            font-size: clamp(1rem, 5vw, 1.8rem);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-message {
+            padding: 25px 15px;
+        }
+        .hero-text {
+            font-size: clamp(0.95rem, 5vw, 1.6rem);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-text {
+            font-size: clamp(0.85rem, 6vw, 1.4rem);
+            line-height: 1.3;
+        }
+    }
+</style>
 </head>
-<body style="font-family:system-ui,Arial;max-width:800px;margin:40px auto;">
-  <h1>Welcome to Fretistan</h1>
-  <p>This is your site. Edit this text on GitHub to change what visitors see.</p>
-  <p>To edit: open the <strong>index.html</strong> file in this repository and change the text, then click <em>Commit changes</em>.</p>
-  <footer style="margin-top:40px;color:#555;font-size:14px;">Made with GitHub Pages</footer>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
+            <span>Fretistan Ltd</span>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="categories.html" class="nav-link">Categories</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Message -->
+<section class="hero-message">
+    <div class="container">
+        <h1 class="hero-text" id="heroText1">From Concept to Completion</h1>
+        <h1 class="hero-text" id="heroText2">Fretistan Ltd Delivers Quality, Precision, and Trust in Every Project</h1>
+        <h1 class="hero-text" id="heroText3">Bridging You to Your Future</h1>
+    </div>
+</section>
+
+<!-- Hero Slideshow -->
+<section class="hero">
+    <div class="slideshow-container">
+        <div class="slide active" style="background-image: url('resources/Excavator.jpg');"></div>
+        <div class="slide" style="background-image: url('resources/Road 9.jpg');"></div>
+        <div class="slide" style="background-image: url('resources/Water drilling.jpg');"></div>
+
+        <div class="slide-navigation">
+            <button class="slide-btn active" data-slide="0"></button>
+            <button class="slide-btn" data-slide="1"></button>
+            <button class="slide-btn" data-slide="2"></button>
+        </div>
+        <div class="slide-arrows">
+            <button class="arrow-btn prev" id="prevBtn">❮</button>
+            <button class="arrow-btn next" id="nextBtn">❯</button>
+        </div>
+    </div>
+</section>
+
+<!-- Welcome Section -->
+<section class="welcome">
+    <div class="container">
+        <div class="welcome-content">
+            <h2>Welcome to Fretistan Ltd</h2>
+            <p>At Fretistan Ltd, we combine engineering precision with visionary design to create structures that stand the test of time. From residential homes to expansive roads, bridges, boreholes, structure management and every other type of construction, we pride ourselves on delivering projects with integrity, innovation, and sustainable excellence. Every project is a promise of quality, durability, and a legacy of generations to come.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Preview -->
+<section class="featured-projects">
+    <div class="container">
+        <h2>Our Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="resources/Classroom 1.jpg" alt="Project 1">
+                <h3>Classrooms </h3>
+                <p>Securing the future through building of classes and institutional facilities, Fretistan ltd building a future that lasts.</p>
+            </div>
+            <div class="project-card">
+                <img src="resources/Bridge 1.jpg" alt="Project 2">
+                <h3>Bridges</h3>
+                <p>Essential infrastructure connecting communities with engineering excellence, Fretistan ltd, bridging you with your future.</p>
+            </div>
+            <div class="project-card">
+                <img src="resources/Commercial building.jpg" alt="Project 3">
+                <h3>Commercial Complex</h3>
+                <p>Multipurpose commercial buildings designed for modern business needs, Fretistan ltd engineering structures that stand the test of time.</p>
+            </div>
+        </div>
+        <div class="view-all-btn">
+            <a href="projects.html" class="btn-primary">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- Services Categories -->
+<section class="services">
+    <div class="container">
+        <h2>Our Construction Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Residential Homes</h3>
+                <p>Custom homes built with precision and care for lasting quality.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛣️</div>
+                <h3>Roads & Highways</h3>
+                <p>Infrastructure development connecting communities and enabling progress.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌉</div>
+                <h3>Bridges</h3>
+                <p>Engineering marvels that span distances and unite communities.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💧</div>
+                <h3>Boreholes</h3>
+                <p>Water solutions providing sustainable access to clean water sources.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Infrastructure</h3>
+                <p>Large-scale projects building the foundation for community development.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Build Your Future?</h2>
+            <p>Contact us today to discuss your construction project.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn-primary">Email Us</a>
+                <a href="tel:+254726273985" class="btn-secondary">Call Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
+                <h3>Fretistan Ltd</h3>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>📍 We are located in Meru, Makutano Kikis building near Kanini haraka Stores</p>
+                <p>📞 +254 726 273 985 | +254 705 796 468</p>
+                <p>✉️ fretistancoltd@gmail.com</p>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-links" style="display:flex; gap:10px; align-items:center;">
+                    <a href="https://instagram.com/@fretistan_co.ltd"><img src="resources/instagram.png" alt="Instagram" width="30"></a>
+                    <a href="https://x.com/@fretistan_coltd"><img src="resources/x.png" alt="X" width="30"></a>
+                    <a href="https://wa.me/254726273985"><img src="resources/whatsapp.png" alt="WhatsApp" width="30"></a>
+                    <a href="https://facebook.com/fretistan"><img src="resources/facebook.png" alt="Facebook" width="30"></a>
+                    <a href="#"><img src="resources/youtube.png" alt="YouTube" width="30"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fretistan Ltd. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Animate hero text with letters falling sequentially
+    const lines = ['heroText1','heroText2','heroText3'];
+    lines.forEach((id,lineIndex)=>{
+        const heroText=document.getElementById(id);
+        const textContent=heroText.textContent;
+        heroText.textContent='';
+        textContent.split('').forEach((char,i)=>{
+            const span=document.createElement('span');
+            span.textContent=char;
+            span.style.animationDelay=`${lineIndex*0.5 + i*0.03}s`;
+            heroText.appendChild(span);
+        });
+    });
+
+    // Slideshow functionality
+    const slides=document.querySelectorAll('.slide');
+    const slideBtns=document.querySelectorAll('.slide-btn');
+    let currentSlide=0;
+    const slideIntervalTime=2500;
+    let slideInterval;
+
+    function showSlide(index){
+        slides.forEach((slide,i)=>{
+            slide.classList.toggle('active', i===index);
+            slideBtns[i].classList.toggle('active', i===index);
+        });
+        currentSlide=index;
+    }
+
+    function nextSlide(){
+        currentSlide=(currentSlide+1)%slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlideFunc(){
+        currentSlide=(currentSlide-1+slides.length)%slides.length;
+        showSlide(currentSlide);
+    }
+
+    slideBtns.forEach(btn=>{
+        btn.addEventListener('click',()=>showSlide(parseInt(btn.dataset.slide)));
+    });
+
+    document.getElementById('nextBtn').addEventListener('click',nextSlide);
+    document.getElementById('prevBtn').addEventListener('click',prevSlideFunc);
+
+    slideInterval=setInterval(nextSlide,slideIntervalTime);
+</script>
 </body>
 </html>
