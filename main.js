@@ -50,45 +50,38 @@ slideInterval = setInterval(nextSlide, slideIntervalTime);
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
+// Set initial CSS for sliding effect
+navMenu.style.overflow = 'hidden';
+navMenu.style.maxHeight = '0';
+navMenu.style.transition = 'max-height 0.5s ease';
+
+/* Hamburger click toggles menu slide down */
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
-    navMenu.classList.toggle('show');
+    if(navMenu.style.maxHeight === '0px' || navMenu.style.maxHeight === '') {
+        navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
+    } else {
+        navMenu.style.maxHeight = '0';
+    }
 });
 
-/* ---------------------- Close Mobile Menu on Link Click ---------------------- */
+/* Close mobile menu when a nav link is clicked */
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
+        if(window.innerWidth <= 768){
             hamburger.classList.remove('active');
-            navMenu.classList.remove('show');
+            navMenu.style.maxHeight = '0';
         }
     });
 });
 
-/* ---------------------- Reset Menu on Window Resize ---------------------- */
+/* Reset menu on window resize if desktop */
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
+    if(window.innerWidth > 768){
         hamburger.classList.remove('active');
-        navMenu.classList.remove('show');
-    }
-});
-
-/* ---------------------- Optional: Slide Down Animation ---------------------- */
-/* This makes the mobile menu open/close smoothly */
-const navMenuHeight = navMenu.scrollHeight;
-navMenu.style.transition = 'max-height 0.5s ease, opacity 0.5s ease';
-navMenu.style.overflow = 'hidden';
-navMenu.classList.remove('show'); // initial state
-
-// Toggle slide effect when hamburger clicked
-hamburger.addEventListener('click', () => {
-    if(navMenu.classList.contains('show')) {
-        navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
-        setTimeout(() => {
-            navMenu.style.maxHeight = '0';
-        }, 10);
+        navMenu.style.maxHeight = 'none'; // allow full desktop menu display
     } else {
-        navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
+        navMenu.style.maxHeight = '0'; // reset for mobile
     }
 });
 
