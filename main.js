@@ -1,8 +1,10 @@
-// ---------------------- HERO TEXT ANIMATION ----------------------
-const lines = ['heroText1', 'heroText2', 'heroText3'];
-
-lines.forEach((id, lineIndex) => {
+// ================================
+// Hero Text Animation
+// ================================
+const heroLines = ['heroText1', 'heroText2', 'heroText3'];
+heroLines.forEach((id, lineIndex) => {
     const heroText = document.getElementById(id);
+    if (!heroText) return; // skip if element not on this page
     const textContent = heroText.textContent;
     heroText.textContent = '';
     textContent.split('').forEach((char, i) => {
@@ -13,7 +15,9 @@ lines.forEach((id, lineIndex) => {
     });
 });
 
-// ---------------------- HERO SLIDESHOW ----------------------
+// ================================
+// Slideshow Functionality
+// ================================
 const slides = document.querySelectorAll('.slide');
 const slideBtns = document.querySelectorAll('.slide-btn');
 let currentSlide = 0;
@@ -23,7 +27,7 @@ let slideInterval;
 function showSlide(index) {
     slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
-        slideBtns[i].classList.toggle('active', i === index);
+        if (slideBtns[i]) slideBtns[i].classList.toggle('active', i === index);
     });
     currentSlide = index;
 }
@@ -42,40 +46,60 @@ slideBtns.forEach(btn => {
     btn.addEventListener('click', () => showSlide(parseInt(btn.dataset.slide)));
 });
 
-document.getElementById('nextBtn').addEventListener('click', nextSlide);
-document.getElementById('prevBtn').addEventListener('click', prevSlideFunc);
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+if (prevBtn) prevBtn.addEventListener('click', prevSlideFunc);
 
-slideInterval = setInterval(nextSlide, slideIntervalTime);
+if (slides.length > 0) {
+    slideInterval = setInterval(nextSlide, slideIntervalTime);
+}
 
-// ---------------------- HAMBURGER MENU FUNCTIONALITY ----------------------
+// ================================
+// Hamburger Menu Functionality
+// ================================
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-hamburger.addEventListener('click', () => {
-    // Toggle menu visibility
-    navMenu.classList.toggle('open');
-
-    // Animate height for push-down effect
-    if (navMenu.classList.contains('open')) {
-        navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
-    } else {
-        navMenu.style.maxHeight = '0';
+if (hamburger && navMenu) {
+    // Initially hide menu on mobile
+    if (window.innerWidth <= 768) {
+        navMenu.style.maxHeight = '0px';
+        navMenu.style.overflow = 'hidden';
+        navMenu.style.transition = 'max-height 0.5s ease';
     }
-});
 
-// Collapse menu when any link is clicked
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        if (navMenu.classList.contains('open')) {
-            navMenu.classList.remove('open');
-            navMenu.style.maxHeight = '0';
+    hamburger.addEventListener('click', () => {
+        if (navMenu.style.maxHeight === '0px' || navMenu.style.maxHeight === '') {
+            // Open menu
+            navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
+        } else {
+            // Close menu
+            navMenu.style.maxHeight = '0px';
         }
     });
-});
 
-// ---------------------- RESPONSIVE IMAGE FIX ----------------------
-document.querySelectorAll('img').forEach(img => {
-    img.style.width = '100%';
-    img.style.height = 'auto';
-    img.style.objectFit = 'cover';
+    // Close menu when a link is clicked (mobile)
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navMenu.style.maxHeight = '0px';
+            }
+        });
+    });
+}
+
+// ================================
+// Handle Window Resize
+// ================================
+window.addEventListener('resize', () => {
+    if (!navMenu) return;
+    if (window.innerWidth > 768) {
+        navMenu.style.maxHeight = '';
+        navMenu.style.overflow = '';
+    } else {
+        navMenu.style.maxHeight = '0px';
+        navMenu.style.overflow = 'hidden';
+    }
 });
