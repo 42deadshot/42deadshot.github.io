@@ -1,396 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fretistan Ltd — Bridging you to your future</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-    /* Hero message container - dynamically centered */
-    .hero-message {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        min-height: 50vh;
-        padding: 30px 20px;
-        margin-top: 80px; /* space for navbar */
-        background-color: #000; /* black background */
-        text-align: center;
-        box-sizing: border-box;
-    }
-
-    /* Hero text lines */
-    .hero-text {
-        font-weight: 900;
-        color: #fff; /* white text */
-        font-family: 'Montserrat', sans-serif;
-        font-size: clamp(1.2rem, 5vw, 2rem); /* responsive font */
-        line-height: 1.4;
-        display: block;
-        margin: 15px 0;
-        word-wrap: break-word;
-        max-width: 100%;
-    }
-
-    .hero-text span {
-        display: inline; /* fixes spacing issue */
-        opacity: 0;
-        transform: translateY(-50px);
-        animation: drop 0.5s forwards;
-    }
-
-    @keyframes drop {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Hero slideshow */
-    .hero {
-        position: relative;
-        height: 50vh;
-        overflow: hidden;
-        margin-top: 0;
-    }
-
-    .slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        transition: opacity 0.8s ease-in-out;
-    }
-
-    .slide.active {
-        opacity: 1;
-    }
-
-    /* Hamburger menu responsive */
-    .nav-menu {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-        transition: max-height 0.4s ease, padding 0.4s ease;
-        overflow: hidden;
-    }
-
-    .nav-menu.open {
-        flex-direction: column;
-        max-height: 500px; /* enough to show all links */
-        padding: 1rem 0;
-        background-color: #F28500; /* orange background */
-    }
-
-    .nav-menu.open a {
-        color: #fff; /* white text on orange */
-        padding: 0.5rem 1rem;
-    }
-
-    .nav-menu a {
-        text-decoration: none;
-        color: var(--text-light); /* default desktop color */
-    }
-
-    .hamburger {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 4px;
-    }
-
-    .hamburger span {
-        width: 25px;
-        height: 3px;
-        background-color: var(--text-light);
-        transition: all 0.3s ease;
-    }
-
-    /* Hamburger animation for cross */
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 1024px) {
-        .nav-menu {
-            max-height: 0;
-            flex-direction: column;
-        }
-        .hamburger {
-            display: flex;
-        }
-        .hero-text {
-            font-size: clamp(1rem, 5vw, 1.8rem);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .hero-message {
-            padding: 25px 15px;
-        }
-        .hero-text {
-            font-size: clamp(0.95rem, 5vw, 1.6rem);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .hero-text {
-            font-size: clamp(0.85rem, 6vw, 1.4rem);
-            line-height: 1.3;
-        }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fretistan Ltd — Bridging you to your future</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
-<!-- Navigation -->
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="nav-logo">
-            <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
-            <span>Fretistan Ltd</span>
-        </div>
-        <div class="nav-menu" id="navMenu">
-            <a href="index.html" class="nav-link active">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="categories.html" class="nav-link">Categories</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </div>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</nav>
-
-<!-- Hero Message -->
-<section class="hero-message">
-    <div class="container">
-        <h1 class="hero-text" id="heroText1">From Concept to Completion</h1>
-        <h1 class="hero-text" id="heroText2">Fretistan Ltd Delivers Quality, Precision, and Trust in Every Project</h1>
-        <h1 class="hero-text" id="heroText3">Bridging You to Your Future</h1>
-    </div>
-</section>
-
-<!-- Hero Slideshow -->
-<section class="hero">
-    <div class="slideshow-container">
-        <div class="slide active" style="background-image: url('resources/Excavator.jpg');"></div>
-        <div class="slide" style="background-image: url('resources/Road 9.jpg');"></div>
-        <div class="slide" style="background-image: url('resources/Water drilling.jpg');"></div>
-
-        <div class="slide-navigation">
-            <button class="slide-btn active" data-slide="0"></button>
-            <button class="slide-btn" data-slide="1"></button>
-            <button class="slide-btn" data-slide="2"></button>
-        </div>
-        <div class="slide-arrows">
-            <button class="arrow-btn prev" id="prevBtn">❮</button>
-            <button class="arrow-btn next" id="nextBtn">❯</button>
-        </div>
-    </div>
-</section>
-
-<!-- Welcome Section -->
-<section class="welcome">
-    <div class="container">
-        <div class="welcome-content">
-            <h2>Welcome to Fretistan Ltd</h2>
-            <p>At Fretistan Ltd, we combine engineering precision with visionary design to create structures that stand the test of time. From residential homes to expansive roads, bridges, boreholes, structure management and every other type of construction, we pride ourselves on delivering projects with integrity, innovation, and sustainable excellence. Every project is a promise of quality, durability, and a legacy of generations to come.</p>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>50+</h3>
-                    <p>Projects Completed</p>
-                </div>
-                <div class="stat-item">
-                    <h3>5+</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Client Satisfaction</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Projects Preview -->
-<section class="featured-projects">
-    <div class="container">
-        <h2>Our Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="resources/Classroom 1.jpg" alt="Project 1">
-                <h3>Classrooms </h3>
-                <p>Securing the future through building of classes and institutional facilities, Fretistan ltd building a future that lasts.</p>
-            </div>
-            <div class="project-card">
-                <img src="resources/Bridge 1.jpg" alt="Project 2">
-                <h3>Bridges</h3>
-                <p>Essential infrastructure connecting communities with engineering excellence, Fretistan ltd, bridging you with your future.</p>
-            </div>
-            <div class="project-card">
-                <img src="resources/Commercial building.jpg" alt="Project 3">
-                <h3>Commercial Complex</h3>
-                <p>Multipurpose commercial buildings designed for modern business needs, Fretistan ltd engineering structures that stand the test of time.</p>
-            </div>
-        </div>
-        <div class="view-all-btn">
-            <a href="projects.html" class="btn-primary">View All Projects</a>
-        </div>
-    </div>
-</section>
-
-<!-- Services Categories -->
-<section class="services">
-    <div class="container">
-        <h2>Our Construction Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🏠</div>
-                <h3>Residential Homes</h3>
-                <p>Custom homes built with precision and care for lasting quality.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🛣️</div>
-                <h3>Roads & Highways</h3>
-                <p>Infrastructure development connecting communities and enabling progress.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🌉</div>
-                <h3>Bridges</h3>
-                <p>Engineering marvels that span distances and unite communities.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💧</div>
-                <h3>Boreholes</h3>
-                <p>Water solutions providing sustainable access to clean water sources.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🏗️</div>
-                <h3>Infrastructure</h3>
-                <p>Large-scale projects building the foundation for community development.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action -->
-<section class="cta">
-    <div class="container">
-        <div class="cta-content">
-            <h2>Ready to Build Your Future?</h2>
-            <p>Contact us today to discuss your construction project.</p>
-            <div class="cta-buttons">
-                <a href="contact.html" class="btn-primary">Email Us</a>
-                <a href="tel:+254726273985" class="btn-secondary">Call Now</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-logo">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
                 <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
-                <h3>Fretistan Ltd</h3>
+                <span>Fretistan Ltd</span>
             </div>
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p>📍 We are located in Meru, Makutano Kikis building near Kanini haraka Stores</p>
-                <p>📞 +254 726 273 985 | +254 705 796 468</p>
-                <p>✉️ fretistancoltd@gmail.com</p>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="categories.html" class="nav-link">Categories</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <div class="footer-social">
-                <h4>Follow Us</h4>
-                <div class="social-links" style="display:flex; gap:10px; align-items:center;">
-                    <a href="https://instagram.com/@fretistan_co.ltd"><img src="resources/instagram.png" alt="Instagram" width="30"></a>
-                    <a href="https://x.com/@fretistan_coltd"><img src="resources/x.png" alt="X" width="30"></a>
-                    <a href="https://wa.me/254726273985"><img src="resources/whatsapp.png" alt="WhatsApp" width="30"></a>
-                    <a href="https://facebook.com/fretistan"><img src="resources/facebook.png" alt="Facebook" width="30"></a>
-                    <a href="#"><img src="resources/youtube.png" alt="YouTube" width="30"></a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- SLIDE 1 -->
+        <div class="hero-slide active" style="background-image: url('resources/Excavator.jpg');">
+            <div class="hero-overlay"></div>
+            <div class="hero-content" style="color: #ffffff; text-shadow: 0px 4px 10px rgba(0,0,0,0.90); position: relative;">
+                <h1 class="hero-title" style="color:#ffffff;">Building Dreams, Constructing Realities</h1>
+                <p class="hero-subtitle" style="color:#ffffff;">The Expert Solution To All Your Construction Needs</p>
+                <a href="contact.html" class="hero-cta" style="color:#ffffff;">Start Your Project</a>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="hero-slide" style="background-image: url('resources/Road 9.jpg');">
+            <div class="hero-overlay"></div>
+            <div class="hero-content" style="color: #ffffff; text-shadow: 0px 4px 10px rgba(0,0,0,0.90); position: relative;">
+                <h1 class="hero-title" style="color:#ffffff;">Quality Infrastructure Solutions</h1>
+                <p class="hero-subtitle" style="color:#ffffff;">Connecting communities through superior construction</p>
+                <a href="projects.html" class="hero-cta" style="color:#ffffff;">View Our Work</a>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="hero-slide" style="background-image: url('resources/Classroom 3.jpg');">
+            <div class="hero-overlay"></div>
+            <div class="hero-content" style="color: #ffffff; text-shadow: 0px 4px 10px rgba(0,0,0,0.90); position: relative;">
+                <h1 class="hero-title" style="color:#ffffff;">Excellence in Every Project</h1>
+                <p class="hero-subtitle" style="color:#ffffff;">You Dream, We Build</p>
+                <a href="about.html" class="hero-cta" style="color:#ffffff;">Learn More</a>
+            </div>
+        </div>
+
+        <div class="hero-controls">
+            <button class="hero-btn active" data-slide="0"></button>
+            <button class="hero-btn" data-slide="1"></button>
+            <button class="hero-btn" data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- Featured Services -->
+    <section class="featured-services">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2>Our Construction Services</h2>
+                <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">Comprehensive construction solutions tailored to meet your specific needs with excellence and precision.</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <!-- Image for Road Construction -->
+                    <img src="resources/Road 3.jpg" alt="Road Construction" style="width:100%; border-radius:10px; margin-bottom:1rem;">
+                    <div class="value-icon">🛣️</div>
+                    <h3>Road Construction</h3>
+                    <p>Building durable roads and highways that connect communities and drive economic development across Kenya.</p>
+                </div>
+
+                <div class="value-card">
+                    <!-- Image for Bridge Engineering -->
+                    <img src="resources/Bridge 1.jpg" alt="Bridge Engineering" style="width:100%; border-radius:10px; margin-bottom:1rem;">
+                    <div class="value-icon">🌉</div>
+                    <h3>Bridge Engineering</h3>
+                    <p>Designing and constructing safe, reliable bridges that span obstacles and improve transportation infrastructure.</p>
+                </div>
+
+                <div class="value-card">
+                    <!-- Image for Classrooms Building -->
+                    <img src="resources/Classroom 2.jpg" alt="Classrooms Building" style="width:100%; border-radius:10px; margin-bottom:1rem;">
+                    <div class="value-icon">🏠</div>
+                    <h3>Classrooms Building</h3>
+                    <p>Building classrooms, shaping a secure future for every child tomorrow.</p>
+                </div>
+
+                <div class="value-card">
+                    <!-- Image for Commercial Projects -->
+                    <img src="resources/Commercial building.jpg" alt="Commercial Projects" style="width:100%; border-radius:10px; margin-bottom:1rem;">
+                    <div class="value-icon">🏢</div>
+                    <h3>Commercial Projects</h3>
+                    <p>Building functional commercial spaces that support business growth and community development.</p>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Fretistan Ltd. All Rights Reserved.</p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" style="background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-gold) 100%); color: white; text-align: center; padding: 4rem 0;">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 1rem;">Ready to Start Your Project?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Get in touch with our expert team for a free consultation and quotation.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" style="background: white; color: var(--primary-orange); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Contact Us</a>
+                <a href="projects.html" style="background: transparent; color: white; padding: 1rem 2rem; border: 2px solid white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">View Projects</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </section>
 
-<script>
-    // Animate hero text with letters falling sequentially
-    const lines = ['heroText1','heroText2','heroText3'];
-    lines.forEach((id,lineIndex)=>{
-        const heroText=document.getElementById(id);
-        const textContent=heroText.textContent;
-        heroText.textContent='';
-        textContent.split('').forEach((char,i)=>{
-            const span=document.createElement('span');
-            span.textContent=char;
-            span.style.animationDelay=`${lineIndex*0.5 + i*0.03}s`;
-            heroText.appendChild(span);
-        });
-    });
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
 
-    // Slideshow functionality
-    const slides=document.querySelectorAll('.slide');
-    const slideBtns=document.querySelectorAll('.slide-btn');
-    let currentSlide=0;
-    const slideIntervalTime=2500;
-    let slideInterval;
+                <div class="footer-logo">
+                    <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
+                </div>
 
-    function showSlide(index){
-        slides.forEach((slide,i)=>{
-            slide.classList.toggle('active', i===index);
-            slideBtns[i].classList.toggle('active', i===index);
-        });
-        currentSlide=index;
-    }
+                <div class="footer-text">
+                    <p style="color:#ffffff;">
+                        <strong>Fretistan Ltd</strong><br>
+                        Building dreams, constructing futures with excellence and integrity.<br>
+                        Meru, Makutano Kikis building near Kanini Haraka Stores
+                    </p>
+                </div>
 
-    function nextSlide(){
-        currentSlide=(currentSlide+1)%slides.length;
-        showSlide(currentSlide);
-    }
+                <!-- SOCIAL MEDIA ICONS -->
+                <div class="social-icons">
 
-    function prevSlideFunc(){
-        currentSlide=(currentSlide-1+slides.length)%slides.length;
-        showSlide(currentSlide);
-    }
+                    <a href="https://facebook.com/USERNAME_PLACEHOLDER" class="social-icon" aria-label="Facebook">
+                        <img src="resources/facebook.png" alt="Facebook" style="width:24px;">
+                    </a>
 
-    slideBtns.forEach(btn=>{
-        btn.addEventListener('click',()=>showSlide(parseInt(btn.dataset.slide)));
-    });
+                    <a href="https://x.com/USERNAME_PLACEHOLDER" class="social-icon" aria-label="X">
+                        <img src="resources/x.png" alt="X" style="width:24px;">
+                    </a>
 
-    document.getElementById('nextBtn').addEventListener('click',nextSlide);
-    document.getElementById('prevBtn').addEventListener('click',prevSlideFunc);
+                    <a href="https://tiktok.com/company/USERNAME_PLACEHOLDER" class="social-icon" aria-label="tik-tok">
+                        <img src="resources/tik-tok.png" alt="LinkedIn" style="width:24px;">
+                    </a>
 
-    slideInterval=setInterval(nextSlide,slideIntervalTime);
+                    <a href="https://instagram.com/USERNAME_PLACEHOLDER" class="social-icon" aria-label="Instagram">
+                        <img src="resources/instagram.png" alt="Instagram" style="width:24px;">
+                    </a>
 
-    // ------------------ HAMBURGER MENU SCRIPT ------------------
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
+                    <a href="https://wa.me/0726273985" class="social-icon" aria-label="WhatsApp">
+                        <img src="resources/whatsapp.png" alt="WhatsApp" style="width:24px;">
+                    </a>
 
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('open');
-        hamburger.classList.toggle('active');
-    });
-</script>
+                    <a href="https://youtube.com/@USERNAME_PLACEHOLDER" class="social-icon" aria-label="YouTube">
+                        <img src="resources/youtube.png" alt="YouTube" style="width:24px;">
+                    </a>
+
+                </div>
+
+                <div class="footer-bottom">
+                    <p style="color:#ffffff;">&copy; 2024 Fretistan Ltd. All rights reserved. | Built with excellence</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+    <!-- HERO OVERLAY STYLE -->
+    <style>
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.35);
+        }
+    </style>
 </body>
 </html>

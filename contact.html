@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Fretistan Ltd - Get Your Construction done</title>
+    <title>Contact Fretistan Ltd - Get Your Construction Done</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -13,6 +13,17 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        /* Hover effect for social icons */
+        .social-icons a img {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .social-icons a:hover img {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,7 +52,6 @@
         </div>
     </nav>
 
-
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
@@ -49,7 +59,6 @@
             <p>Get in touch for your construction needs.</p>
         </div>
     </section>
-
 
     <!-- Contact Section -->
     <section class="contact">
@@ -59,20 +68,26 @@
                 <!-- Contact Information -->
                 <div class="contact-info">
                     <h2>Get in Touch</h2>
-                    <p>Ready to start your project? Contact us today for a free consultation and quotation.</p>
+                    <p>Ready to start your project? Contact us today we'd love to hear from you.</p>
 
                     <div class="contact-details">
 
                         <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
                             <div>
                                 <h4>Location</h4>
-                                <p>Meru, Kenya</p>
+                                <p>Makutano Meru,
+                                 Kikis building
+                                 near Kanini Haraka Stores</p>
                             </div>
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
                             <div>
                                 <h4>Phone Numbers</h4>
                                 <p>+254 726 273 985</p>
@@ -81,7 +96,9 @@
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
                             <div>
                                 <h4>Email Address</h4>
                                 <p>fretistancompanyltd@gmail.com</p>
@@ -89,24 +106,26 @@
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-icon"><i class="fa-regular fa-clock"></i></div>
+                            <div class="contact-icon">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
                             <div>
                                 <h4>Business Hours</h4>
                                 <p>Mon–Fri: 8 AM – 5 PM</p>
-                                <!--<p>Saturday: 9 AM – 2 PM</p>-->
                             </div>
                         </div>
+
                     </div>
 
                     <!-- Social Media -->
-                    <div class="social-media">
-                        <h3>Follow Us</h3>
-                        <div  class="social-links" style="display:flex; gap:10px; align-items:center;">
-                        <a href="https://instagram.com/@fretistan_co.ltd" target="_blank"><img src="resources/instagram.png" alt="Instagram" width="30"></a>
-                        <a href="https://x.com/@fretistan_coltd" target="_blank"><img src="resources/x.png" alt="X" width="30"></a>
-                        <a href="https://wa.me/254726273985" target="_blank"><img src="resources/whatsapp.png" alt="WhatsApp" width="30"></a>
-                        <a href="https://facebook.com/fretistan" target="_blank"><img src="resources/facebook.png" alt="Facebook" width="30"></a>
-                        <a href="https://youtube.com/yourusername" target="_blank"><img src="resources/youtube.png" alt="Youtube" width="30"></a>
+                    <div style="margin-top: 3rem;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--secondary-blue);">Connect With Us</h3>
+                        <div class="social-icons" style="justify-content: flex-start; gap: 1rem;">
+                            <a href="https://instagram.com/fretistan_co.ltd"><img src="resources/instagram.png" alt="Instagram" width="30"></a>
+                            <a href="https://x.com/fretistan_coltd"><img src="resources/x.png" alt="X" width="30"></a>
+                            <a href="https://wa.me/254726273985"><img src="resources/whatsapp.png" alt="WhatsApp" width="30"></a>
+                            <a href="https://facebook.com/fretistan"><img src="resources/facebook.png" alt="Facebook" width="30"></a>
+                            <a href="https://youtube.com/@fretistan"><img src="resources/youtube.png" alt="YouTube" width="30"></a>
                         </div>
                     </div>
 
@@ -114,182 +133,142 @@
 
                 <!-- Contact Form -->
                 <div class="contact-form">
-                    <h2>Request a Quote</h2>
-                    <form id="contactForm" class="form">
+                    <h3>Send us a Message</h3>
+                    <form action="mailto:fretistancompanyltd@gmail.com" method="post" enctype="text/plain">
 
                         <div class="form-group">
                             <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address">
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
                         </div>
 
                         <div class="form-group">
-                            <label for="project-type">Project Type *</label>
-                            <select id="project-type" name="project-type" required>
-                                <option value="">Select Project Type</option>
-                                <option value="residential">Residential Home</option>
-                                <option value="commercial">Commercial Building</option>
-                                <option value="road">Road Construction</option>
-                                <option value="bridge">Bridge Construction</option>
-                                <option value="borehole">Borehole Drilling</option>
-                                <option value="infrastructure">Infrastructure Project</option>
-                                <option value="other">Other</option>
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required placeholder="What can we help you with?">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select id="service" name="service" style="width: 100%; padding: 1rem; border: 2px solid var(--border-light); border-radius: 10px; font-size: 1rem; background-color: #fafafa;">
+                                <option value="">Select a service (optional)</option>
+                                <option value="Roads">Road Construction</option>
+                                <option value="Bridges">Bridge Construction</option>
+                                <option value="Residential">Residential Buildings</option>
+                                <option value="Commercial">Commercial Buildings</option>
+                                <option value="Infrastructure">Infrastructure</option>
+                                <option value="Other">Other Services</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="location">Project Location</label>
-                            <input type="text" id="location" name="location" placeholder="City/County, Kenya">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Please describe your project requirements, timeline, and any specific details you'd like us to know..."></textarea>
                         </div>
 
-                        <div class="form-group">
-                            <label for="budget">Estimated Budget Range</label>
-                            <select id="budget" name="budget">
-                                <option value="">Select Budget Range</option>
-                                <option value="under-1m">Under KES 1 Million</option>
-                                <option value="1m-5m">KES 1 – 5 Million</option>
-                                <option value="5m-10m">KES 5 – 10 Million</option>
-                                <option value="10m-50m">KES 10 – 50 Million</option>
-                                <option value="over-50m">Over KES 50 Million</option>
-                            </select>
-                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fa-solid fa-paper-plane" style="margin-right: 0.5rem;"></i>
+                            Send Message
+                        </button>
 
-                        <div class="form-group">
-                            <label for="timeline">Project Timeline</label>
-                            <select id="timeline" name="timeline">
-                                <option value="">Select Timeline</option>
-                                <option value="immediate">Immediate (1 month)</option>
-                                <option value="short-term">1–3 months</option>
-                                <option value="medium-term">3–6 months</option>
-                                <option value="long-term">6+ months</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Project Description *</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-
-                        <div class="form-group checkbox">
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <label for="newsletter">Subscribe to our newsletter</label>
-                        </div>
-
-                        <button type="submit" class="btn-primary">Send Message</button>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 1rem; text-align: center;">
+                            <i class="fa-solid fa-info-circle" style="margin-right: 0.5rem;"></i>
+                            <!--This will open your email client to send the message.--> Alternatively, you can email us directly at fretistancompanyltd@gmail.com
+                        </p>
                     </form>
                 </div>
+
             </div>
         </div>
     </section>
-
 
     <!-- FAQ Section -->
-    <section class="faq">
+    <section class="faq-section" style="background: var(--bg-white); padding: 6rem 0;">
         <div class="container">
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>How long does a typical construction project take?</h3>
-                    <p>Timelines vary by project size and complexity. <!--Homes take 6–12 months, while large infrastructure may take 1–3 years.--></p>
-                </div>
-
-                <!--<div class="faq-item">
-                    <h3>Do you provide financing options?</h3>
-                    <p>Yes. We work with multiple financial institutions and offer flexible payment plans.</p>
-                </div>-->
-                <div class="faq-item">
-                    <h3>Are you licensed</h3>
-                    <p>Yes. Fretistan Ltd is fully licensed, registered and certified.</p>
-                </div>
-
-                <!--<div class="faq-item">
-                    <h3>What areas do you serve?</h3>
-                    <p>We serve Eastern, Central, and Nairobi, but also take projects countrywide.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>Do you offer warranties?</h3>
-                    <p>Yes. Warranty duration varies per project type.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>Do you assist with permits?</h3>
-                    <p>Yes. We offer full design-build services including permits and approvals.</p>
-                </div>
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2>Frequently Asked Questions</h2>
+                <p style="font-size: 1.2rem; color: #666;">Quick answers to common questions about our construction services</p>
             </div>
-        </div>
-    </section>-->
 
-
-    <!-- Map Section -->
-    <section class="map-section">
-        <div class="container">
-            <h2>Find Us</h2>
-
-            <div class="map-container">
-                <div class="map-placeholder">
-                    <div class="map-content">
-                        <h3>Meru, Kenya</h3>
-                        <p>Our main office is located in Meru Makutano Kikis building near Kanini haraka Stores</p>
-                       <!-- <p><i class="fa-solid fa-location-dot"></i> 0.0476° N, 37.6465° E</p> -->
-                        <p><i class="fa-solid fa-phone"></i> +254 726 273 985</p>
-                        <p><i class="fa-solid fa-envelope"></i> fretistanColtd@gmail.com</p>
-                    </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary-orange);">
+                    <h3 style="color: var(--secondary-blue); margin-bottom: 1rem;">How do I get a quote for my project?</h3>
+                    <p style="color: #666; line-height: 1.7;">Simply fill out our contact form or call us directly. We'll schedule a consultation to discuss your project requirements and provide a detailed quotation.</p>
                 </div>
+
+                <!--<div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary-orange);">
+                    <h3 style="color: var(--secondary-blue); margin-bottom: 1rem;">What areas do you serve?</h3>
+                    <p style="color: #666; line-height: 1.7;">We primarily serve Meru County and surrounding areas in Kenya. Contact us to discuss projects in other locations.</p>
+                </div>-->
+
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary-orange);">
+                    <h3 style="color: var(--secondary-blue); margin-bottom: 1rem;">How long does a typical project take?</h3>
+                    <p style="color: #666; line-height: 1.7;">Project timelines vary based on scope and complexity. We'll provide a detailed timeline during your consultation based on your specific requirements.</p>
+                </div>
+
+                <!--<div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary-orange);">
+                    <h3 style="color: var(--secondary-blue); margin-bottom: 1rem;">Do you handle permits and approvals?</h3>
+                    <p style="color: #666; line-height: 1.7;">Yes, we assist with all necessary permits and regulatory approvals to ensure your project complies with local building codes and regulations.</p>
+                </div>-->
             </div>
         </div>
     </section>
 
+    <!-- Call to Action -->
+    <section class="cta-section" style="background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-gold) 100%); color: white; text-align: center; padding: 4rem 0;">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 1rem;">Ready to Start Your Project?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Don't wait - contact us today and let's turn your construction dreams into reality!</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="tel:+254726273985" style="background: white; color: var(--primary-orange); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fa-solid fa-phone" style="margin-right: 0.5rem;"></i>
+                    Call Now
+                </a>
+                <a href="https://wa.me/254726273985" style="background: transparent; color: white; padding: 1rem 2rem; border: 2px solid white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-
             <div class="footer-content">
-
                 <div class="footer-logo">
                     <img src="resources/fretistan-logo.png" alt="Fretistan Ltd Logo">
-                    <h3>Fretistan Ltd</h3>
+                </div>
+                <div class="footer-text">
+                    <p style="color:#ffffff;"><strong>Fretistan Ltd</strong><br>
+                    Building dreams, constructing futures with excellence and integrity.<br>
+                    Meru, Makutano Kikis building near Kanini Haraka Stores</p>
                 </div>
 
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i class="fa-solid fa-location-dot"></i> 📍 We are located in Meru, Makutano Kikis building near Kanini haraka Stores</p>
-                    <p><i class="fa-solid fa-phone"></i> +254 726 273 985 / +254 705 796 468</p>
-                    <p><i class="fa-solid fa-envelope"></i> fretistanColtd@gmail.com</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com/fretistan" aria-label="Facebook"><img src="resources/facebook.png" alt="Facebook" width="24"></a>
+                    <a href="https://x.com/fretistan_coltd" aria-label="X"><img src="resources/x.png" alt="X" width="24"></a>
+                    <a href="https://tiktok.com/company/fretistan" aria-label="tik-tok"><img src="resources/tik-tok.png" alt="LinkedIn" width="24"></a>
+                    <a href="https://instagram.com/fretistan_co.ltd" aria-label="Instagram"><img src="resources/instagram.png" alt="Instagram" width="24"></a>
+                    <a href="https://wa.me/254726273985" aria-label="WhatsApp"><img src="resources/whatsapp.png" alt="WhatsApp" width="24"></a>
+                    <a href="https://youtube.com/@fretistan" aria-label="YouTube"><img src="resources/youtube.png" alt="YouTube" width="24"></a>
                 </div>
 
-                <div class="footer-social">
-                    <h4>Follow Us</h4>
-                    <div class="social-links" style="display:flex; gap:10px; align-items:center;">
-                        <a href="https://instagram.com/@fretistan_co.ltd" target="_blank"><img src="resources/instagram.png" alt="Instagram" width="30"></a>
-                        <a href="https://x.com/@fretistan_coltd" target="_blank"><img src="resources/x.png" alt="X" width="30"></a>
-                        <a href="https://wa.me/254726273985" target="_blank"><img src="resources/whatsapp.png" alt="WhatsApp" width="30"></a>
-                        <a href="https://facebook.com/fretistan" target="_blank"><img src="resources/facebook.png" alt="Facebook" width="30"></a>
-                        <a href="https://youtube.com/yourusername" target="_blank"><img src="resources/youtube.png" alt="Youtube" width="30"></a>
-                    </div>
+                <div class="footer-bottom">
+                    <p style="color:#ffffff;">&copy; 2024 Fretistan Ltd. All rights reserved. | Built with excellence</p>
                 </div>
-
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Fretistan Ltd. All Rights Reserved.</p>
-            </div>
-
         </div>
     </footer>
 
     <script src="main.js"></script>
-
 </body>
 </html>
