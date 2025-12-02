@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* ---------------------- RESET AND BASE STYLES ---------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -22,13 +22,13 @@ body {
     padding: 0 20px;
 }
 
-/* Color Variables */
+/* ---------------------- COLOR VARIABLES ---------------------- */
 :root {
-    --primary-orange: #F28500; /* Hero / Construction Orange */
-    --secondary-blue: #001f3f; /* Footer / Navy Blue */
+    --primary-orange: #F28500;
+    --secondary-blue: #001f3f;
     --accent-gold: #FFD700;
     --bg-light: #F4F4F4;
-    --bg-white: #FFFFFF; /* Middle Section */
+    --bg-white: #FFFFFF;
     --text-dark: #333333;
     --text-light: #FFFFFF;
     --success: #28a745;
@@ -37,7 +37,7 @@ body {
     --border-light: #e9ecef;
 }
 
-/* Typography */
+/* ---------------------- TYPOGRAPHY ---------------------- */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -57,7 +57,7 @@ p {
     color: var(--text-dark);
 }
 
-/* Navigation */
+/* ---------------------- NAVIGATION ---------------------- */
 .navbar {
     background-color: var(--secondary-blue);
     padding: 1rem 0;
@@ -100,12 +100,13 @@ p {
     overflow: hidden;
 }
 
-/* Hamburger Menu */
+/* ---------------------- HAMBURGER MENU ---------------------- */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    z-index: 1100;
 }
 
 .hamburger span {
@@ -115,13 +116,13 @@ p {
     transition: all 0.3s ease;
 }
 
-/* Hamburger open state (for pushing content) */
+/* Hamburger open state */
 .nav-menu.open {
     display: flex;
     flex-direction: column;
 }
 
-/* Hero Section */
+/* ---------------------- HERO SECTION ---------------------- */
 .hero {
     margin-top: 80px;
     height: 80vh;
@@ -176,7 +177,7 @@ p {
     color: var(--text-light);
 }
 
-/* Slideshow Navigation */
+/* ---------------------- SLIDESHOW NAVIGATION ---------------------- */
 .slide-navigation {
     position: absolute;
     bottom: 30px;
@@ -228,7 +229,7 @@ p {
     transform: scale(1.1);
 }
 
-/* Buttons */
+/* ---------------------- BUTTONS ---------------------- */
 .btn-primary, .btn-secondary, .btn-outline {
     display: inline-block;
     padding: 1rem 2rem;
@@ -273,7 +274,7 @@ p {
     color: var(--text-light);
 }
 
-/* Cards */
+/* ---------------------- CARDS ---------------------- */
 .project-card, .service-card, .team-member, .category-card {
     background-color: var(--bg-white);
     border-radius: 10px;
@@ -287,7 +288,7 @@ p {
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Social Links Horizontal + Hover */
+/* ---------------------- SOCIAL LINKS ---------------------- */
 .social-links {
     display: flex;
     gap: 10px;
@@ -312,7 +313,7 @@ p {
     transform: scale(1.2);
 }
 
-/* Footer */
+/* ---------------------- FOOTER ---------------------- */
 .footer {
     background-color: var(--secondary-blue);
     color: var(--text-light);
@@ -373,15 +374,22 @@ p {
     margin-bottom: 0;
 }
 
-/* Responsive Design for Mobile */
+/* ---------------------- RESPONSIVE DESIGN ---------------------- */
 @media (max-width: 1024px) {
-    .nav-menu {
-        flex-direction: column;
-        max-height: 0;
-    }
-
     .hamburger {
         display: flex;
+    }
+
+    .nav-menu {
+        max-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        transition: max-height 0.4s ease;
+        width: 100%;
+    }
+
+    .nav-menu.open {
+        max-height: 500px; /* enough to show all links */
     }
 }
 
@@ -397,7 +405,7 @@ p {
     }
 }
 
-/* Hover and Animation Utility */
+/* ---------------------- UTILITY & ANIMATION ---------------------- */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
