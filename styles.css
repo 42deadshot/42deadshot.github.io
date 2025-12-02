@@ -1,3 +1,9 @@
+/* Prevent horizontal scroll on mobile */
+html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -21,10 +27,6 @@ img {
 .category-card {
     width: 100%;
     overflow: hidden;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
@@ -160,8 +162,8 @@ p {
     position: relative;
     overflow: hidden;
     background-color: var(--primary-orange);
-    height: auto; /* auto so height adjusts for mobile */
-    min-height: 60vh; /* minimum height */
+    height: auto; /* height adjusts to content */
+    min-height: 60vh; /* ensures good view on mobile */
 }
 
 .slideshow-container {
@@ -413,3 +415,7 @@ p {
         font-size: 1rem;
     }
 }
+
+/* Hover and Animation Utility */
+.fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
