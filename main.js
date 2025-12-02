@@ -1,7 +1,8 @@
-/* ---------------------- Hero Text Animation ---------------------- */
+/* ---------------------- Hero Text Animation (only if elements exist) ---------------------- */
 const lines = ['heroText1', 'heroText2', 'heroText3'];
 lines.forEach((id, lineIndex) => {
     const heroText = document.getElementById(id);
+    if (!heroText) return; // skip if not on this page
     const textContent = heroText.textContent;
     heroText.textContent = '';
     textContent.split('').forEach((char, i) => {
@@ -12,81 +13,91 @@ lines.forEach((id, lineIndex) => {
     });
 });
 
-/* ---------------------- Slideshow Functionality ---------------------- */
+/* ---------------------- Slideshow Functionality (only if slides exist) ---------------------- */
 const slides = document.querySelectorAll('.slide');
-const slideBtns = document.querySelectorAll('.slide-btn');
-let currentSlide = 0;
-const slideIntervalTime = 2500;
-let slideInterval;
+if (slides.length) {
+    const slideBtns = document.querySelectorAll('.slide-btn');
+    let currentSlide = 0;
+    const slideIntervalTime = 2500;
+    let slideInterval;
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-        slideBtns[i].classList.toggle('active', i === index);
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+            if(slideBtns[i]) slideBtns[i].classList.toggle('active', i === index);
+        });
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlideFunc() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    slideBtns.forEach(btn => {
+        btn.addEventListener('click', () => showSlide(parseInt(btn.dataset.slide)));
     });
-    currentSlide = index;
+
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    if(nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if(prevBtn) prevBtn.addEventListener('click', prevSlideFunc);
+
+    slideInterval = setInterval(nextSlide, slideIntervalTime);
+
+    window.addEventListener('load', () => {
+        slides.forEach(slide => slide.style.opacity = '0');
+        slides[currentSlide].style.opacity = '1';
+    });
 }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-function prevSlideFunc() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-slideBtns.forEach(btn => {
-    btn.addEventListener('click', () => showSlide(parseInt(btn.dataset.slide)));
-});
-
-document.getElementById('nextBtn').addEventListener('click', nextSlide);
-document.getElementById('prevBtn').addEventListener('click', prevSlideFunc);
-
-slideInterval = setInterval(nextSlide, slideIntervalTime);
-
-/* ---------------------- Hamburger Menu Toggle ---------------------- */
+/* ---------------------- Hamburger Menu (works on all pages) ---------------------- */
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-// Set initial CSS for sliding effect
-navMenu.style.overflow = 'hidden';
-navMenu.style.maxHeight = '0';
-navMenu.style.transition = 'max-height 0.5s ease';
+if(hamburger && navMenu){
+    // Initial CSS for slide + fade effect
+    navMenu.style.overflow = 'hidden';
+    navMenu.style.maxHeight = '0';
+    navMenu.style.opacity = '0';
+    navMenu.style.transition = 'max-height 0.5s ease, opacity 0.5s ease';
 
-/* Hamburger click toggles menu slide down */
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    if(navMenu.style.maxHeight === '0px' || navMenu.style.maxHeight === '') {
-        navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
-    } else {
-        navMenu.style.maxHeight = '0';
-    }
-});
-
-/* Close mobile menu when a nav link is clicked */
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        if(window.innerWidth <= 768){
-            hamburger.classList.remove('active');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        if(navMenu.style.maxHeight === '0px' || navMenu.style.maxHeight === ''){
+            navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
+            navMenu.style.opacity = '1';
+        } else {
             navMenu.style.maxHeight = '0';
+            navMenu.style.opacity = '0';
         }
     });
-});
 
-/* Reset menu on window resize if desktop */
-window.addEventListener('resize', () => {
-    if(window.innerWidth > 768){
-        hamburger.classList.remove('active');
-        navMenu.style.maxHeight = 'none'; // allow full desktop menu display
-    } else {
-        navMenu.style.maxHeight = '0'; // reset for mobile
-    }
-});
+    // Close menu on nav link click
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if(window.innerWidth <= 768){
+                hamburger.classList.remove('active');
+                navMenu.style.maxHeight = '0';
+                navMenu.style.opacity = '0';
+            }
+        });
+    });
 
-/* ---------------------- Ensure Slides & Hero Text Load Smoothly ---------------------- */
-window.addEventListener('load', () => {
-    slides.forEach(slide => slide.style.opacity = '0');
-    slides[currentSlide].style.opacity = '1';
-});
+    // Reset menu on resize
+    window.addEventListener('resize', () => {
+        if(window.innerWidth > 768){
+            hamburger.classList.remove('active');
+            navMenu.style.maxHeight = 'none';
+            navMenu.style.opacity = '1';
+        } else {
+            navMenu.style.maxHeight = '0';
+            navMenu.style.opacity = '0';
+        }
+    });
+}
